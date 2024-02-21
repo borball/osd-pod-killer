@@ -1,6 +1,8 @@
 ## create cronjob
 
 ```shell
+oc apply -f service-account.yaml
+oc apply -f cluster-role-binding.yaml
 oc apply -f osd-pod-killer-cronjob.yaml
 ```
 
