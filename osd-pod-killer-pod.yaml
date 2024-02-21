@@ -11,7 +11,7 @@ spec:
       command:
         - /kill.sh
       args:
-        - "1.01"
+        - "50"
       imagePullPolicy: Always
   dnsPolicy: ClusterFirst
   serviceAccountName: osd-pod-killer-sa

@@ -18,7 +18,7 @@ spec:
             - command:
               - /kill.sh
               args:
-                - "1.01"
+                - "50"
               image: quay.io/bzhai/osd-pod-killer:1.0
               imagePullPolicy: Always
               name: osd-pod-killer
