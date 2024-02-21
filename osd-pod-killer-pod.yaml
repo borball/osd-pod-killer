@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: osd-pod-killer
+  name: osd-pod-killer
+spec:
+  containers:
+    - image: quay.io/bzhai/osd-pod-killer:1.0
+      name: osd-pod-killer
+      command:
+        - /kill.sh
+      args:
+        - "1.01"
+      imagePullPolicy: Always
+  dnsPolicy: ClusterFirst
+  serviceAccountName: osd-pod-killer-sa
+  restartPolicy: Always

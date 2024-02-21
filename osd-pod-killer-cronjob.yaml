@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: osd-pod-killer
+  namespace: openshift-storage
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    metadata:
+      labels:
+        created-by: osd-pod-killer
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          containers:
+            - command:
+              - /kill.sh
+              args:
+                - "1.01"
+              image: quay.io/bzhai/osd-pod-killer:1.0
+              imagePullPolicy: Always
+              name: osd-pod-killer
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+          dnsPolicy: ClusterFirst
+          restartPolicy: Never
+          serviceAccountName: osd-pod-killer-sa
+          terminationGracePeriodSeconds: 30
+  schedule: 0 * * * *
+  startingDeadlineSeconds: 3600
+  successfulJobsHistoryLimit: 3
