@@ -1,5 +1,5 @@
 
-FROM registry.ci.openshift.org/ocp/4.12:cli
+FROM registry.redhat.io/openshift4/ose-cli:v4.12
 WORKDIR /
 
 COPY jq-linux-amd64 /usr/bin/jq
